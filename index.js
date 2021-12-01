@@ -9,7 +9,9 @@ console.log(process.env);
 
 const app = express();
 
-const PORT = 9000;
+// const PORT = 9000;
+const PORT = process.env.PORT;
+
 
 app.use(express.json());
 
