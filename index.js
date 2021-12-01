@@ -14,8 +14,6 @@ app.use(express.json());
 
 // const MONGO_URL = "mongodb://localhost";
 const MONGO_URL =  process.env.MONGO_URL;
-//   "mongodb+srv://vrushabh:welcome123@cluster0.zksv2.mongodb.net";
-// mongodb+srv://vrushabh:<password>@cluster0.zksv2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 
 async function createConnection() {
   const client = new MongoClient(MONGO_URL);
