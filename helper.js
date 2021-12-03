@@ -1,5 +1,6 @@
 import { ObjectId } from "mongodb";
 import { client } from "./index.js";
+import bcrypt from "bcrypt";
 
 async function updateMovieById(id, data) {
   return await client
@@ -10,6 +11,11 @@ async function updateMovieById(id, data) {
 async function createMovies(data) {
   return await client.db("movies").collection("movies").insertMany(data);
 }
+
+async function createUser(data) {
+  return await client.db("movies").collection("users").insertOne(data);
+}
+
 async function getMovies(filter) {
   return await client
     .db("movies")
@@ -31,10 +37,29 @@ async function getMoviebyId(id) {
     .findOne({ _id: ObjectId(id) });
 }
 
+async function getUserByName(username) {
+  return await client
+    .db("movies")
+    .collection("users")
+    .findOne({ username: username });
+}
+
+async function genPassword(password) {
+  const NO_OF_ROUNDS = 10;
+  const salt = await bcrypt.genSalt(NO_OF_ROUNDS);
+  console.log(salt);
+  const hashedPassword = await bcrypt.hash(password, salt);
+  console.log(hashedPassword);
+  return hashedPassword;
+}
+
 export {
   getMovies,
   createMovies,
   getMoviebyId,
   deleteMovieById,
   updateMovieById,
+  genPassword,
+  createUser,
+  getUserByName,
 };

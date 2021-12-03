@@ -3,7 +3,8 @@ import express from "express"; //   "type": "module",
 import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
 import { moviesRouter } from "./routes/movies.js";
-import cors from 'cors';
+import cors from "cors";
+import {usersRouter} from "./routes/users.js"
 
 dotenv.config();
 console.log(process.env);
@@ -13,7 +14,7 @@ const app = express();
 // const PORT = 9000;
 const PORT = process.env.PORT;
 
-app.use(cors())
+app.use(cors());
 
 app.use(express.json());
 
@@ -32,6 +33,9 @@ app.get("/", (request, response) => {
   response.send("hello, ***😅");
 });
 
-app.use("/movies",moviesRouter)
+app.use("/movies", moviesRouter);
+app.use("/users", usersRouter);
+
+
 
 app.listen(PORT, () => console.log("App is started", PORT));
