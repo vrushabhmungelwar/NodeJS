@@ -30,10 +30,10 @@ router.route("/signin").post(async (request, response) => {
 
   const userFromDB = await getUserByEmail(email);
 
-  if (!userFromDB) {
-    response.status(401).send({ message: "Invalid credentials1" });
-    return;
-  }
+//   if (!userFromDB) {
+//     response.status(401).send({ message: "Invalid credentials1" });
+//     return;
+//   }
 
   const storedPassword = userFromDB.password;
 
@@ -42,6 +42,8 @@ router.route("/signin").post(async (request, response) => {
   if (isPasswordMatch) {
     const token = jwt.sign({ id: userFromDB._id }, process.env.SECRET_KEY);
     response.send({ message: "Successful login", token: token });
+  console.log(userFromDB);
+
   } else {
     response.status(401).send({ message: "Invalid credentials" });
   }
