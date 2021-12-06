@@ -7,7 +7,7 @@ const router = express.Router();
 router.route("/register").post(async (request, response) => {
   const { email, password } = request.body;
 
-  const userFromDB = await  getUserByEmail(email);
+  const userFromDB = await getUserByEmail(email);
 
   console.log(userFromDB);
 
@@ -28,9 +28,9 @@ router.route("/register").post(async (request, response) => {
 router.route("/signin").post(async (request, response) => {
   const { email, password } = request.body;
 
-  const userFromDB = await getUserByEmail({email});
+  const userFromDB = await getUserByEmail({ email,password });
 
-  if (!userFromDB) {
+  if (!userFromDB.email) {
     response.status(401).send({ message: "Invalid credentials1" });
     return;
   }
