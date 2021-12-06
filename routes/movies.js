@@ -5,6 +5,7 @@ import {
   getMoviebyId,
   deleteMovieById,
   updateMovieById,
+  addMovie,
 } from "../helper.js";
 // import { auth } from "../middleware/auth.js";
 const router = express.Router();
@@ -38,6 +39,13 @@ router
   const data = request.body;
   // console.log(data);
   const result = await createMovies(data);
+  response.send(result);
+})
+
+.post(async (request, response) => {
+  const data = request.body;
+  // console.log(data);
+  const result = await addMovie(data);
   response.send(result);
 });
 router 

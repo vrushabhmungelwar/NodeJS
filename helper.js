@@ -12,6 +12,10 @@ async function createMovies(data) {
   return await client.db("movies").collection("movies").insertMany(data);
 }
 
+async function addMovie(data) {
+  return await client.db("movies").collection("movies").insertOne(data);
+}
+
 async function createUser(data) {
   return await client.db("movies").collection("users").insertOne(data);
 }
@@ -62,4 +66,5 @@ export {
   genPassword,
   createUser,
   getUserByName,
+  addMovie,
 };
