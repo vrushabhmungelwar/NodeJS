@@ -20,6 +20,9 @@ async function createUser(data) {
   return await client.db("movies").collection("users").insertOne(data);
 }
 
+async function createUser2(data) {
+  return await client.db("movies").collection("users2").insertOne(data);
+}
 async function getMovies(filter) {
   return await client
     .db("movies")
@@ -48,7 +51,23 @@ async function getUserByName(username) {
     .findOne({ username: username });
 }
 
+async function getUserByEmail(email) {
+  return await client
+    .db("movies")
+    .collection("users2")
+    .findOne({ email: email });
+}
+
 async function genPassword(password) {
+  const NO_OF_ROUNDS = 10;
+  const salt = await bcrypt.genSalt(NO_OF_ROUNDS);
+  console.log(salt);
+  const hashedPassword = await bcrypt.hash(password, salt);
+  console.log(hashedPassword);
+  return hashedPassword;
+}
+
+async function genPassword2(password) {
   const NO_OF_ROUNDS = 10;
   const salt = await bcrypt.genSalt(NO_OF_ROUNDS);
   console.log(salt);
@@ -67,4 +86,7 @@ export {
   createUser,
   getUserByName,
   addMovie,
+  getUserByEmail,
+  createUser2,
+  genPassword2,
 };

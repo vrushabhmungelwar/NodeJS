@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import { moviesRouter } from "./routes/movies.js";
 import cors from "cors";
 import {usersRouter} from "./routes/users.js"
+import {users2Router} from "./routes/users2.js"
 
 dotenv.config();
 console.log(process.env);
@@ -35,6 +36,8 @@ app.get("/", (request, response) => {
 
 app.use("/movies", moviesRouter);
 app.use("/users", usersRouter);
+app.use("/users2", users2Router);
+
 
 
 
