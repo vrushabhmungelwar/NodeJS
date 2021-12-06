@@ -51,7 +51,7 @@ async function getUserByName(username) {
     .findOne({ username: username });
 }
 
-async function getUserByEmail({email}) {
+async function getUserByEmail(email) {
   return await client
     .db("movies")
     .collection("users2")
