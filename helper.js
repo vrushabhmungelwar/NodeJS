@@ -76,6 +76,14 @@ async function genPassword2(password) {
   return hashedPassword;
 }
 
+async function getDogs(data) {
+  return await client
+    .db("Dogs")
+    .collection("dog_facts")
+    .find(data)
+    .toArray();
+}
+
 export {
   getMovies,
   createMovies,
@@ -89,4 +97,5 @@ export {
   getUserByEmail,
   createUser2,
   genPassword2,
+  getDogs
 };
